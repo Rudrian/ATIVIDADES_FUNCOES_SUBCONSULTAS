@@ -1,0 +1,61 @@
+create database loja_jgt;
+use loja_jgt;
+
+create table vendas_jgt(
+id_vendas int auto_increment primary key not null,
+nome_prod varchar (60) not null,
+quantidade int not null,
+preco decimal(10,2) not null
+);
+
+INSERT INTO vendas_jgt (nome_prod, quantidade, preco)
+VALUES
+    ('Camisa Estampa JGT', 30, 75.99),
+    ('Calça jeans JGT', 30, 55.99),
+    ('Tênis JGT', 30, 100.49),
+    ('Garrafa JGT', 30, 30.99),
+    ('Boné', 30, 25.99),
+    ('Mouse Gamer RGB Tecnologico', 30, 149.99),
+    ('Teclado Mecanico RGB', 30, 209.99),
+    ('Mochila JGT', 30, 89.99),
+    ('Headset', 30, 99.99),
+    ('Smartphone JGT 5G', 30, 1759.99);
+    
+select * from vendas_jgt;
+
+select count(*) AS total_vendas
+from vendas_jgt;
+
+select sum(quantidade) AS Total_Produtos
+from vendas_jgt;
+
+select avg(preco) AS Media_preco
+from vendas_jgt;
+
+select min(preco) AS Menor_Preco
+from vendas_jgt;
+
+select max(preco) AS Maior_preco
+from vendas_jgt;
+
+select nome_prod, count(*) AS Total_vendas
+from vendas_jgt
+group by nome_prod;
+
+select nome_prod, sum(quantidade) AS Total_produtos_vendas
+from vendas_jgt
+group by nome_prod
+having Total_produtos_vendas >= 80;
+
+select nome_prod, quantidade, preco
+from vendas_jgt
+order by nome_prod asc;
+
+select nome_prod, quantidade, preco
+from vendas_jgt
+order by preco desc
+limit 10,20;
+
+select nome_prod, preco,
+	(select max(preco) from vendas_jgt) AS Maior_preco
+from vendas_jgt;
