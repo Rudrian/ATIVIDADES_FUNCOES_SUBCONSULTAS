@@ -26,3 +26,24 @@ VALUES
     ('Ralf Borges', 'M', 'Jabaquara', 1600.00, 'Marketing');
     
     select * from inform_func;
+    
+    SELECT SUM(salario_func) AS soma_salarios
+FROM inform_func;
+
+SELECT COUNT(*) AS qtd_func_marketing
+FROM inform_func
+WHERE setor_func = 'Marketing';
+
+SELECT setor_func, AVG(salario_func) AS media_salarios
+FROM inform_func
+GROUP BY setor_func
+ORDER BY media_salarios DESC;
+
+SELECT COUNT(*) AS qtd_func_socorro
+FROM inform_func
+WHERE salario_func < 3000.00 AND bairro_func = 'Socorro';
+
+SELECT setor_func, COUNT(*) AS qtd_funcionarios
+FROM inform_func
+GROUP BY setor_func
+HAVING COUNT(*) > 3;
